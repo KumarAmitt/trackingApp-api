@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete :logout, to: 'sessions#logout'
   get :logged_in, to: 'sessions#logged_in'
 
-  resources :products, only: [:index] do
+  resources :products, only: [:index, :show] do
     resources :deals, only: [:create, :update, :destroy]
   end
 end
