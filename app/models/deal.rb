@@ -4,4 +4,6 @@ class Deal < ApplicationRecord
 
   validates :premium, presence: true
   validates :application_id, presence: true
+
+  scope :newest_first, -> { order('created_at DESC') }
 end

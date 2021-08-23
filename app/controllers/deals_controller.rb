@@ -2,7 +2,7 @@ class DealsController < ApplicationController
   include CurrentUserConcern
 
   def index
-    deals = @current_user.deals.includes(:product).order(created_at: :desc)
+    deals = @current_user.deals.includes(:product).newest_first
     data = Hash.new { |k, v| k[v] = [] }
     deals.each do |e|
       data[e.product.product_name] << e
