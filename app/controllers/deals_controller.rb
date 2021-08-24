@@ -3,12 +3,18 @@ class DealsController < ApplicationController
 
   def index
     deals = @current_user.deals.includes(:product).newest_first
-    data = Hash.new { |k, v| k[v] = [] }
-    deals.each do |e|
-      data[e.product.product_name] << e
-    end
+    # data = Hash.new { |k, v| k[v] = [] }
+    # deals.each do |e|
+    #   data[e.product.product_name] << e
+    # end
 
-    render json: { data: data, status: :ok }
+    today = deals.today
+    yesterday = deals.yesterday
+    previous = deals.previous
+
+    # all = @current_user.deals.includes(:product).group_by { |t| t.created_at.day }
+
+    render json: { today: previous, yesterday: yesterday, previous: previous, status: :ok }
   end
 
   def create
