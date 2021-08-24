@@ -13,7 +13,7 @@ class DealsController < ApplicationController
 
   def create
     deal = @current_user.deals.build(deal_params)
-    deal.product_id = params[:product_id]
+    deal.user_id = @current_user.id
     if deal.save
       render json: { deal: deal }
     else
@@ -34,6 +34,6 @@ class DealsController < ApplicationController
   private
 
   def deal_params
-    params.permit(:premium, :application_id)
+    params.permit(:product_id, :premium, :application_id)
   end
 end
