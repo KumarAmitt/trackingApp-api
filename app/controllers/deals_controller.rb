@@ -4,20 +4,14 @@ class DealsController < ApplicationController
   def index
     deals = @current_user.deals.includes(:product).newest_first
 
-    sum_premium = deals.sum(:premium)
-    items = deals.group_by { |t| t.product.product_name }
     progress = {
-      sum_premium: sum_premium,
-      items: items
+      sum_premium: deals.sum(:premium),
+      items: deals.group_by { |t| t.product.product_name }
     }
 
-    today = deals.today
-    yesterday = deals.yesterday
-    previous = deals.previous
+    all = deals.group_by { |t| t.created_at.to_date }
 
-    # all = @current_user.deals.includes(:product).group_by { |t| t.created_at.day }
-
-    render json: { today: today, yesterday: yesterday, previous: previous, progress: progress, status: :ok }
+    render json: { all: all, progress: progress, status: :ok }
   end
 
   def create
