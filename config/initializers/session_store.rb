@@ -4,4 +4,4 @@
 #   Rails.application.config.session_store :cookie_store, key: '_deals_tracker_app'
 # end
 
-Rails.application.config.session_store :cookie_store, key: '_deals_tracker_app', domain: :all, same_site: :none
+Rails.application.config.session_store :cookie_store, key: '_deals_tracker_app', domain: :all, tld_length: 2
