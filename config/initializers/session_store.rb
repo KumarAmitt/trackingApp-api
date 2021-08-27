@@ -1,5 +1,5 @@
 if Rails.env == 'production'
-  Rails.application.config.session_store :cookie_store, key: '_deals_tracker', domain: 'deals-tracker.herokuapp.com'
+  Rails.application.config.session_store :cookie_store, key: '_deals_tracker', domain: 'deals-tracker.herokuapp.com', tld_length: 3
 else
   Rails.application.config.session_store :cookie_store, key: '_deals_tracker'
 end
