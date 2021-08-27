@@ -34,5 +34,10 @@ module TrackingAppApi
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # custom
+    config.session_store :cookie_store, key: '_deals_tracker'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end

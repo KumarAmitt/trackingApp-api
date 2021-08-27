@@ -29,7 +29,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Custom Gems
-gem 'activerecord-session_store'
 gem 'pry-rails'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rubocop', '>= 1.0', '< 2.0'
