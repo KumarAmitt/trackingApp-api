@@ -39,5 +39,6 @@ module TrackingAppApi
     # config.session_store :cookie_store, key: '_deals_tracker'
     # config.middleware.use ActionDispatch::Cookies
     # config.middleware.use config.session_store, config.session_options
+    config.hosts = nil
   end
 end
