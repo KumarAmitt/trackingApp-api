@@ -5,7 +5,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins 'https://deals-tracker.herokuapp.com'
+    origins 'https://tracking-app-frontend.herokuapp.com/'
     resource '*', headers: :any, methods: %i[get post put patch delete options head], credentials: true
   end
 end
