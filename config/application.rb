@@ -40,5 +40,6 @@ module TrackingAppApi
     # config.middleware.use ActionDispatch::Cookies
     # config.middleware.use config.session_store, config.session_options
     config.hosts = nil
+    config.assets.initialize_on_precompile = false
   end
 end
