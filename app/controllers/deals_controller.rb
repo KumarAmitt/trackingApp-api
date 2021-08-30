@@ -26,12 +26,12 @@ class DealsController < ApplicationController
   end
 
   def update
-    deal = Deal.find(params[:id]).update(deal_params)
+    deal = set_deal.update(deal_params)
     render json: { deal: deal }
   end
 
   def destroy
-    deal = Deal.find(params[:id])
+    deal = set_deal
     deal.destroy
   end
 
@@ -39,5 +39,9 @@ class DealsController < ApplicationController
 
   def deal_params
     params.permit(:product_id, :premium, :application_id)
+  end
+
+  def set_deal
+    Deal.find(params[:id])
   end
 end

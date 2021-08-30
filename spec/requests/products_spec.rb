@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Todos API', type: :request do
+RSpec.describe 'Product', type: :request do
   let!(:products) { create_list(:product, 10) }
   let(:product_id) { products.first.id }
 
