@@ -1,28 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe 'Sessions', type: :request do
-  before { post '/registrations', params: { user: { username: 'user1', password: 'asdf', password_confirmation: 'asdf' }}}
+  before do
+    post '/registrations', params: { user: { username: 'user1', password: 'asdf', password_confirmation: 'asdf' } }
+  end
   describe 'POST /sessions' do
     describe 'logins the existing users' do
       it 'return the logged in user' do
-        post '/sessions', params: { user: { username: 'user1', password: 'asdf'} }
+        post '/sessions', params: { user: { username: 'user1', password: 'asdf' } }
         expect(json['user']['username']).to eql('user1')
       end
 
       it 'sets the status of created' do
-        post '/sessions', params: { user: { username: 'user1', password: 'asdf'} }
+        post '/sessions', params: { user: { username: 'user1', password: 'asdf' } }
         expect(json['status']).to eql('created')
       end
 
       it 'sets the logged_in to true' do
-        post '/sessions', params: { user: { username: 'user1', password: 'asdf'} }
+        post '/sessions', params: { user: { username: 'user1', password: 'asdf' } }
         expect(json['logged_in']).to be_truthy
       end
     end
 
     describe 'throw error in response if login is unsuccessful' do
       it 'throw the status code of 401' do
-        post '/sessions', params: { user: { username: 'user2', password: 'asdf'} }
+        post '/sessions', params: { user: { username: 'user2', password: 'asdf' } }
         expect(json['status']).to eql(401)
       end
     end

@@ -4,10 +4,10 @@ class DealsController < ApplicationController
   def index
     if @current_user
       deals = @current_user.deals.includes(:product).newest_first
-      all = deals.group_by { |t| t.created_at.to_date }
+      all = deals.group_by { |items| items.created_at.to_date }
       progress = {
         sum_premium: deals.sum(:premium),
-        items: deals.group_by { |d| d.product.product_name }
+        items: deals.group_by { |items| items.product.product_name }
       }
       render json: { all: all, progress: progress, status: :ok }
     else
