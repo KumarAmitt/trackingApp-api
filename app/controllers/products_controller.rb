@@ -7,9 +7,16 @@ class ProductsController < ApplicationController
   end
 
   def show
-    product = Product.find(params[:id])
+    product = set_product
+
     user = @current_user
 
     render json: { product: product, user: user, status: :ok }
+  end
+
+  private
+
+  def set_product
+    Product.find_by_id params[:id]
   end
 end
