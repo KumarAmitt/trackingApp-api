@@ -136,9 +136,29 @@ Response 2 (Inactive Session):
 
 ```
 
-### 4. To get all the products available
+### 4. Current user logout / sign out
 
-Get Request"
+Delete request
+> /logout
+
+Example:
+
+```bigquery
+DELETE: /logout
+
+Response:
+
+{
+    "status": 200,
+    "logged_out": true
+}
+
+```
+
+
+### 5. To get all the products available
+
+Get Request
 
 > /products
 
@@ -166,6 +186,202 @@ Get: /products
 }
 ```
 
+### 6. To get the specific product
+Get Request
+
+> /products/:id
+
+Example:
+
+```bigquery
+GET: /products/2
+
+{
+    "product": {
+        "id": 2,
+        "product_name": "Small Business Insurance",
+        "created_at": "2021-08-23T08:56:08.571Z",
+        "updated_at": "2021-08-23T08:56:08.571Z"
+    },
+    "user": {...},
+    "status": "ok"
+}
+```
+
+### 7. To get all the deals associated with current user 
+#### Require user to be signed-in
+
+Get Request:
+
+> /deals
+
+It returns all the deals date-wise and product wise
+
+Example:
+```bigquery
+{
+  all: {
+    '2021-08-29': [
+      {
+        user_id: 1,
+        product_id: 3,
+        premium: 2000,
+        application_id: 'APL006',
+        ...
+      },
+          ...
+    ],
+      ...
+  },
+  progress: {
+    sum_premium: 132997,
+    items: {
+      'Commercial Vehicle': [
+        {
+          user_id: 1,
+          product_id: 3,
+          premium: 2000,
+          application_id: 'APL006',
+          ...
+        },
+        ...
+      ],
+      ...
+    }
+  },
+  status: 'ok'
+}
+```
+
+### 8. Create New deal (For logged in user)
+
+Post Request
+
+> /products/:product_id/deals
+
+Provide the deal data
+```bigquery
+{
+    product_id: <product_id>,
+    application_id: <application_id>,
+    premium: <premium>,
+}
+```
+
+Example
+```bigquery
+POST: /products/1/deals
+
+{
+    "product_id": 1,
+    "application_id": "APL001",
+    "premium": 7700,
+}
+```
+
+### 9. Update an specific deal
+Patch Request
+> /products/:product_id/deals/:deal_id
+
+Provide the updated data
+
+```bigquery
+{
+    product_id: <updated_product_id>,
+    application_id: <updated_application_id>,
+    premium: <updated_premium>,
+}
+```
+
+### 10. Delete a deal
+Delete Request
+> /products/:product_id/deals/:deal_id
+
+
+## Built With 🛠
+
+```
+- Ruby: 3.0.0
+- Ruby on Rails: 6.1.4
+- Postgresql
+```
+
+## Install ⏳
+
+> Follow below steps to Run it on your local machine
+
+1. - [ ] Open your `Terminal`
+2. - [ ] Navigate to the directory where you will like to install the repo by running `cd FOLDER-NAME`
+3. - [ ] Run `https://github.com/KumarAmitt/trackingApp-api.git` to clone the Repository
+4. - [ ] Run `cd trackingApp-api.git` to enter directory
+5. - [ ] Run `git checkout api` to switch to the feature branch
+6. - [ ] Run `bundle install` to install Ruby Gems
+7. - [ ] Run `yarn install --check-files` to install yarn
+8. - [ ] Run `rails db:create` to create your database
+9. - [ ] Run `rails db:migrate` to migrate your database
+10.- [] Run `rails db:seed` to pre-populate database with some dummy data  
+11. - [ ] Run `rails s` to get the server running
+12. - [ ] Enter `http://localhost:3000/` in the browser to get the app running
+
+## Testing
+
+In order to run the tests, RSPEC should be installed.
+
+- Please run the following command line in your terminal to install :
+
+```bash
+gem install rspec
+```
+Run from terminal
+```bash
+rspec
+```
+
+## Author
+
+### 👨‍💻 Amit Kumar
+
+- GitHub: [@KumarAmitt](https://github.com/KumarAmitt)
+- Twitter: [@ArrshAmit](https://twitter.com/ArrshAmitt)
+- LinkedIn: [@kumar-amitt](https://www.linkedin.com/in/kumar-amitt)
+
+### 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+- Fork the project
+- Create your feature branch `git checkout -b feature`
+- Commit your changes `git commit -m 'feature'`
+- Push it `git push -u origin feature`
+- Open a pull request using this branch
+
+
+Feel free to check the [issues page](https://github.com/KumarAmitt/trackingApp-api/issues).
+
+### Show your support
+
+Give a ⭐️ if you like this project!
+
+### License
+
+&copy; 2021 Amit Kumar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE.
 
 
 
