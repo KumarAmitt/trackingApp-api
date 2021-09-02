@@ -3,11 +3,10 @@ class DealsController < ApplicationController
 
   def index
     if @current_user
-      deals = @current_user.deals.includes(:product).newest_first
-      all = deals.group_by { |items| items.created_at.to_date }
+      all = @current_user.deals.group_by_date
       progress = {
-        sum_premium: deals.sum(:premium),
-        items: deals.group_by { |items| items.product.product_name }
+        sum_premium: @current_user.deals.sum_premium,
+        items: @current_user.deals.group_by_product
       }
       render json: { all: all, progress: progress, status: :ok }
     else
@@ -25,15 +24,6 @@ class DealsController < ApplicationController
     end
   end
 
-  def update
-    deal = set_deal.update(deal_params)
-    render json: { deal: deal }
-  end
-
-  def destroy
-    deal = set_deal
-    deal.destroy
-  end
 
   private
 
@@ -41,7 +31,4 @@ class DealsController < ApplicationController
     params.permit(:product_id, :premium, :application_id)
   end
 
-  def set_deal
-    Deal.find(params[:id])
-  end
 end
