@@ -30,21 +30,27 @@ RSpec.describe 'Sessions', type: :request do
     end
   end
 
-  describe 'GET /logged_in' do
-    it 'return false if user is NOT logged in' do
-      get '/logged_in'
+  describe 'GET /sessions' do
+    it 'return logged_in as true if user is logged in' do
+      get '/sessions'
+      expect(json['logged_in']).to be_truthy
+    end
+
+    it 'return logged_in as false if user is NOT logged in' do
+      delete '/sessions'
+      get '/sessions'
       expect(json['logged_in']).to be_falsey
     end
   end
 
-  describe 'DELETE /logout' do
+  describe 'DELETE /sessions' do
     describe 'destroys the current session' do
       it 'set the logged_out to true' do
-        delete '/logout'
+        delete '/sessions'
         expect(json['logged_out']).to be_truthy
       end
       it 'set the status to 200' do
-        delete '/logout'
+        delete '/sessions'
         expect(json['status']).to eql(200)
       end
     end
