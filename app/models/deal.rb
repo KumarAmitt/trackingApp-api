@@ -11,5 +11,4 @@ class Deal < ApplicationRecord
 
   scope :deals, -> { deals.includes(:product).newest_first }
   scope :sum_premium, -> { sum(:premium) }
-
 end

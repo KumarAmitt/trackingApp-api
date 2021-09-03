@@ -24,11 +24,9 @@ class DealsController < ApplicationController
     end
   end
 
-
   private
 
   def deal_params
     params.permit(:product_id, :premium, :application_id)
   end
-
 end
