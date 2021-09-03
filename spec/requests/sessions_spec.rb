@@ -8,7 +8,7 @@ RSpec.describe 'Sessions', type: :request do
     describe 'logins the existing users' do
       it 'return the logged in user' do
         post '/sessions', params: { user: { username: 'user1', password: 'asdf' } }
-        expect(json['user']['username']).to eql('user1')
+        expect(json['username']).to eql('user1')
       end
 
       it 'sets the status of created' do
