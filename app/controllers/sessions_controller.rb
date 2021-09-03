@@ -3,9 +3,9 @@ class SessionsController < ApplicationController
 
   def index
     if @current_user
-      render json: { logged_in: true, username: @current_user.username }
+      render json: { status: 200, logged_in: true, username: @current_user.username }
     else
-      render json: { logged_in: false }
+      render json: { status: 401, logged_in: false }
     end
   end
 
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      render json: { status: :created, logged_in: true, username: user.username }
+      render json: { status: 200, logged_in: true, username: user.username }
     else
       render json: { status: 401 }
     end
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    render json: { status: 200, logged_out: true }
+    render json: { status: 200, logged_in: false }
   end
 
   private

@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'sets the status of created' do
-      expect(json['status']).to eql('created')
+      expect(json['status']).to eql(200)
     end
   end
 end

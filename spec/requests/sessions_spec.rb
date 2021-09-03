@@ -13,7 +13,7 @@ RSpec.describe 'Sessions', type: :request do
 
       it 'sets the status of created' do
         post '/sessions', params: { user: { username: 'user1', password: 'asdf' } }
-        expect(json['status']).to eql('created')
+        expect(json['status']).to eql(200)
       end
 
       it 'sets the logged_in to true' do
@@ -45,9 +45,9 @@ RSpec.describe 'Sessions', type: :request do
 
   describe 'DELETE /sessions' do
     describe 'destroys the current session' do
-      it 'set the logged_out to true' do
+      it 'set the logged_in to false' do
         delete '/sessions'
-        expect(json['logged_out']).to be_truthy
+        expect(json['logged_out']).to be_falsy
       end
       it 'set the status to 200' do
         delete '/sessions'
