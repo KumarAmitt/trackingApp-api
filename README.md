@@ -55,14 +55,9 @@ POST: /registrations
 Response:
 
 {
-    "status": "created",
-    "user": {
-        "id": 107,
-        "username": "user303",
-        "password_digest": "$2a$12$vGC7Wd3h2FJVZ.32jO3Vue/edvGGzk78Q1a.3o3huExL4KA6D68iW",
-        "created_at": "2021-08-31T10:29:45.395Z",
-        "updated_at": "2021-08-31T10:29:45.395Z"
-    }
+    "status": 200,
+    "logged_in": true
+    "username": "user303"
 }
 ```
 
@@ -97,40 +92,33 @@ POST: /sessions
 Response:
 
 {
-    "status": "created",
-    "logged_in": true,
-    "user": {
-        "id": 107,
-        "username": "user303",
-        "password_digest": "$2a$12$vGC7Wd3h2FJVZ.32jO3Vue/edvGGzk78Q1a.3o3huExL4KA6D68iW",
-        "created_at": "2021-08-31T10:29:45.395Z",
-        "updated_at": "2021-08-31T10:29:45.395Z"
-    }
+    "status": 200,
+    "logged_in": true
+    "username": "user303"
 }
 ```
 
 ### 3. Check whether the user is Logged in / Active session Information
 Get Request:
 
-> /logged_in
+> /sessions
 
 Example:
 ```bigquery
-GET: /logged_in
+GET: /sessions
 
 Respons 1 (Active Session):
 
 {
-    "logged_in": true,
-    "user": {
-        ...
-        ...
-    }
+    "status": 200,
+    "logged_in": true
+    "username": "user303"
 }
 
 Response 2 (Inactive Session):
 
 {
+    "status": 401,
     "logged_in": false,
 }
 
@@ -139,12 +127,12 @@ Response 2 (Inactive Session):
 ### 4. Current user logout / sign out
 
 Delete request
-> /logout
+> /sessions
 
 Example:
 
 ```bigquery
-DELETE: /logout
+DELETE: /sessions
 
 Response:
 
@@ -278,24 +266,6 @@ POST: /products/1/deals
     "premium": 7700,
 }
 ```
-
-### 9. Update an specific deal
-Patch Request
-> /products/:product_id/deals/:deal_id
-
-Provide the updated data
-
-```bigquery
-{
-    product_id: <updated_product_id>,
-    application_id: <updated_application_id>,
-    premium: <updated_premium>,
-}
-```
-
-### 10. Delete a deal
-Delete Request
-> /products/:product_id/deals/:deal_id
 
 
 ## Built With 🛠
