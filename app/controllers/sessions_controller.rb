@@ -10,9 +10,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: user_params['username']).try(:authenticate, user_params['password'])
+    user = User.find_by(username: user_params['username'])
 
-    if user
+    if user&.authenticate(user_params['password'])
       session[:user_id] = user.id
       render json: { status: 200, logged_in: true, username: user.username }
     else
