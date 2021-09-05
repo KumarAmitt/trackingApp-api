@@ -20,7 +20,7 @@ class DealsController < ApplicationController
     if deal.save
       render json: { deal: deal, status: :ok }
     else
-      render json: { status: 'Invalid data' }
+      render json: { status: 'Invalid data' }, status: 400
     end
   end
 
