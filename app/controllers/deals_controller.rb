@@ -3,7 +3,7 @@ class DealsController < ApplicationController
 
   def index
     if @current_user
-      all = @current_user.deals.group_by_date
+      all = @current_user.deals.newest_first.group_by_date
       progress = {
         sum_premium: @current_user.deals.sum_premium,
         items: @current_user.deals.group_by_product

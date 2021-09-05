@@ -9,6 +9,6 @@ class Deal < ApplicationRecord
   scope :group_by_date, -> { group_by { |items| items.created_at.to_date } }
   scope :group_by_product, -> { group_by { |items| items.product.product_name } }
 
-  scope :deals, -> { deals.includes(:product).newest_first }
+  scope :deals, -> { deals.includes(:product) }
   scope :sum_premium, -> { sum(:premium) }
 end
