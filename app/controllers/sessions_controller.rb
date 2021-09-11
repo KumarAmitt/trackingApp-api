@@ -1,10 +1,6 @@
 class SessionsController < ApplicationController
   include CurrentUserConcern
 
-  # I request you to kindly read the Special Note section of the pull request(bottom of the PR)
-  # I know this is not the right place to put such a note but I am just placing it here to grab your attention as
-  # I already left a note regarding this action in last PR. but I guess you didn't noticed. I also sent a reply to
-  # the review feedback but I guess it landed at wrong place and didn't reached to you.
   def index
     if @current_user
       render json: { status: 200, logged_in: true, username: @current_user.username }
