@@ -2,8 +2,12 @@ class ProductsController < ApplicationController
   include CurrentUserConcern
 
   def index
-    products = Product.all
-    render json: { products: products, status: :ok }
+    if @current_user
+      products = Product.all
+      render json: { products: products, status: :ok }
+    else
+      render json: { status: 401 }
+    end
   end
 
   def show
