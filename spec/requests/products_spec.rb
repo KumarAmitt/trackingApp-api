@@ -4,6 +4,10 @@ RSpec.describe 'Product', type: :request do
   let!(:products) { create_list(:product, 10) }
   let(:product_id) { products.first.id }
 
+  before do
+    post '/registrations', params: { user: { username: 'user1', password: 'asdf', password_confirmation: 'asdf' } }
+  end
+
   describe 'GET /products' do
     before { get '/products' }
 

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :registrations, only: [:create]
-  resources :sessions, only: [:index, :create]
+  resources :sessions, only: [:create]
   resource :sessions, only: [:destroy]
 
   resources :products, only: [:index, :show] do

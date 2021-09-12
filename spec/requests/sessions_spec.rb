@@ -21,26 +21,6 @@ RSpec.describe 'Sessions', type: :request do
         expect(json['logged_in']).to be_truthy
       end
     end
-
-    describe 'throw error in response if login is unsuccessful' do
-      it 'throw the status code of 401' do
-        post '/sessions', params: { user: { username: 'user2', password: 'asdf' } }
-        expect(json['status']).to eql(401)
-      end
-    end
-  end
-
-  describe 'GET /sessions' do
-    it 'return logged_in as true if user is logged in' do
-      get '/sessions'
-      expect(json['logged_in']).to be_truthy
-    end
-
-    it 'return logged_in as false if user is NOT logged in' do
-      delete '/sessions'
-      get '/sessions'
-      expect(json['logged_in']).to be_falsey
-    end
   end
 
   describe 'DELETE /sessions' do
