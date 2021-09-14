@@ -98,7 +98,7 @@ Response:
 }
 ```
 
-### 4. Current user logout / sign out
+### 3. Current user logout / sign out
 
 Delete request
 > /sessions
@@ -118,7 +118,7 @@ Response:
 ```
 
 
-### 5. To get all the products available
+### 4. To get all the products available
 
 Get Request
 
@@ -148,7 +148,7 @@ Get: /products
 }
 ```
 
-### 6. To get the specific product
+### 5. To get the specific product
 Get Request
 
 > /products/:id
@@ -170,7 +170,7 @@ GET: /products/2
 }
 ```
 
-### 7. To get all the deals associated with current user 
+### 6. To get all the deals associated with current user 
 #### Require user to be signed-in
 
 Get Request:
@@ -215,7 +215,7 @@ Example:
 }
 ```
 
-### 8. Create New deal (For logged in user)
+### 7. Create New deal (For logged in user)
 
 Post Request
 
