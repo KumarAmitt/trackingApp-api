@@ -98,32 +98,6 @@ Response:
 }
 ```
 
-### 3. Check whether the user is Logged in / Active session Information
-Get Request:
-
-> /sessions
-
-Example:
-```bigquery
-GET: /sessions
-
-Respons 1 (Active Session):
-
-{
-    "status": 200,
-    "logged_in": true
-    "username": "user303"
-}
-
-Response 2 (Inactive Session):
-
-{
-    "status": 401,
-    "logged_in": false,
-}
-
-```
-
 ### 4. Current user logout / sign out
 
 Delete request
